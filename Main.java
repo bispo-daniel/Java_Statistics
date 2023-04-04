@@ -1,3 +1,5 @@
+package OOP_javaStatistics;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.*;
