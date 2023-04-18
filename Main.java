@@ -1,5 +1,3 @@
-package OOP_javaStatistics;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.*;
@@ -7,15 +5,16 @@ import java.lang.Math;
 import java.text.DecimalFormat;
 
 public class Main {
-    public static void main(String[] args){
-
+    static void generateRandomNumbers(int numberOfNumbers, int maxRangeNumber){
         ArrayList<Integer> numsArr = new ArrayList<>();
 
-        for(int i = 0; i < 10; i++){
-            int randomNumber = (int)(Math.random() * 1001);
+        //Loop to add random numbers on arraylist
+        for(int i = 0; i < numberOfNumbers; i++){
+            int randomNumber = (int)(Math.random() * maxRangeNumber + 1);
             numsArr.add(randomNumber);
         }
 
+        //Sorting the numbers of the arralist
         Collections.sort(numsArr);
 
         int minNumber = numsArr.get(0);
@@ -39,7 +38,7 @@ public class Main {
             //Total sum
             totalSum += n;
 
-            //Check if numsArr length is odd or even to get the Media
+            //Check if numsArr length is odd or even to get the Median
             if(numsArr.size() % 2 == 1){
                 int number = numsArr.get(numsArr.size() / 2);
                 median = number;
@@ -55,18 +54,21 @@ public class Main {
         for(int it = 0; it < numsArr.size(); it++){
             for(int i = it + 1; i < numsArr.size(); i++){
                 if (numsArr.get(it) == numsArr.get(i)){
-                    ArrayList<Integer> repetiu = new ArrayList<>();
-                    repetiu.add(numsArr.get(it));
-                    repetiu.add(numsArr.get(i));
-                    modes.add(repetiu);
+                    ArrayList<Integer> repeated = new ArrayList<>();
+                    repeated.add(numsArr.get(it));
+                    repeated.add(numsArr.get(i));
+                    modes.add(repeated);
                 }
             }
         }
 
         numberFormat.format(totalSum);
 
+        int highestScenario = (maxRangeNumber + 1) * numberOfNumbers;
+        int highestScenarioToUser = maxRangeNumber * numberOfNumbers;
+
         String printThis = 
-            "Statistic of 10 random numbers in the inclusive range of 0 to 1000:\n\n" +
+            "Statistic of %d random numbers in the inclusive range of 0 to %d:\n\n" +
             "Numbers generated:\n" + numsArr + 
             "\nMean: " + totalSum / numsArr.size() + 
             "\nMedian: " + median +
@@ -75,7 +77,33 @@ public class Main {
             "\nHighest Number: " + maxNumber +
             "\nCount n: " + numsArr.size() +
             "\nSum: " + totalSum +
-            "\nPercentage of the current total sum to the highest sum scenario (10.000): " + (totalSum / 10000)*100 + "%";
-        JOptionPane.showMessageDialog(null, printThis);
+            "\nPercentage of total sum to the highest sum scenario (%d): %.2f%s";
+        
+            JOptionPane.showMessageDialog(null, String.format(printThis, numberOfNumbers, maxRangeNumber, highestScenarioToUser, (totalSum / highestScenario)*100, "%"));
+
+        main(null);
+    }
+    
+
+    static void menu(){
+        String numberOfNumbersString = JOptionPane.showInputDialog(null, "How many numbers do you want to generate?\n Type 0 to exit.");
+            int numberOfNumbers = Integer.parseInt(numberOfNumbersString);
+        String maxRangeString = JOptionPane.showInputDialog(null, "Type the maximun number (From zero to ...)\n Type 0 to exit.");
+            int maxRange = Integer.parseInt(maxRangeString);
+
+        if(numberOfNumbers == 0 || maxRange == 0){
+            System.exit(0);
+        } else {
+            generateRandomNumbers(numberOfNumbers, maxRange);
+        }
+
+    }
+
+    public static void main(String[] args){
+        try {
+            menu();
+        } catch (NumberFormatException e) {
+            main(args);
+        }
     }
 }
