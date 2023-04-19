@@ -9,3 +9,17 @@ The second percentage throws an error.
 
 ## Learning 
 Math calculations with Java, random numbers and etc.
+
+## Screenshots
+
+### `Random numbers quantity page`
+
+![all-text](https://github.com/bispo-daniel/Java_Statistics/blob/main/quantityPageScreenshot.png)
+
+### `Random numbers range page`
+
+![all-text](https://github.com/bispo-daniel/Java_Statistics/blob/main/rangePageScreenshot.png)
+
+### `Statistics page`
+
+![all-text](https://github.com/bispo-daniel/Java_Statistics/blob/main/statisticsPage.png)
