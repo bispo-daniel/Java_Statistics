@@ -64,8 +64,7 @@ public class Main {
 
         numberFormat.format(totalSum);
 
-        int highestScenario = (maxRangeNumber + 1) * numberOfNumbers;
-        int highestScenarioToUser = maxRangeNumber * numberOfNumbers;
+        int highestScenario = maxRangeNumber * numberOfNumbers;
 
         String printThis = 
             "Statistic of %d random numbers in the inclusive range of 0 to %d:\n\n" +
@@ -79,7 +78,7 @@ public class Main {
             "\nSum: " + totalSum +
             "\nPercentage of total sum to the highest sum scenario (%d): %.2f%s";
         
-            JOptionPane.showMessageDialog(null, String.format(printThis, numberOfNumbers, maxRangeNumber, highestScenarioToUser, (totalSum / highestScenario)*100, "%"));
+            JOptionPane.showMessageDialog(null, String.format(printThis, numberOfNumbers, maxRangeNumber, highestScenario, (totalSum / highestScenario)*100, "%"));
 
         main(null);
     }
